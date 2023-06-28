@@ -1,0 +1,8 @@
+User:Admin
+Pass:Admin
+
+U:test01         <---- User con permiso de visualizar catalogo.
+P:Testing123.   
+
+U:test02         <---- User con permiso de visualizar y de añadir.
+P:Testing123.

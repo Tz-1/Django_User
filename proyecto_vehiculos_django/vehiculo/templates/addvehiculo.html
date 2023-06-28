@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="m-2">
+    <h3>Ingresar Vehiculo</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Enviar">
+    </form>
+</div>
+{% endblock %}
