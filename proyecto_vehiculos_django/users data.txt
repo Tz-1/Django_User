@@ -1,8 +1,8 @@
-User:Admin
+User:Admin       <---- User con todo los permisos.
 Pass:Admin
 
-U:test01         <---- User con permiso de visualizar catalogo.
+U:test01         <---- User sin ningun permiso.
 P:Testing123.   
 
-U:test02         <---- User con permiso de visualizar y de añadir.
+U:test02         <---- User con solo permiso de visualizar.
 P:Testing123.

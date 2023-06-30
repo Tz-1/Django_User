@@ -14,8 +14,8 @@ def indexview(request):
     template_name = 'index.html'
     return render(request, template_name)
 
-@login_required(login_url='/login')
-@permission_required("vehiculo.visualizar_catalogo")
+@login_required(login_url='login')
+@permission_required("vehiculo.visualizar_catalogo", raise_exception=True)
 def listvehiculo(request):
     vehiculos = VehiculoModel.objects.all()
     return render(request, 'listvehiculo.html', {'listvehiculo': vehiculos})
@@ -44,14 +44,12 @@ def login_view(request):
                 messages.info(request, f"Iniciaste sesión como: {username}.")
                 next_url = request.GET.get('next', '/')
                 return HttpResponseRedirect(next_url)
-        
         else:
             messages.error(request, "Usuario o contraseña inválidos.")
-            return HttpResponseRedirect('login')
-
     else:
         form = AuthenticationForm()
-        return render(request=request, template_name="login.html", context={"login_form":form})
+
+    return render(request=request, template_name="login.html", context={"login_form":form})
     
 def logout_view(request):
     logout(request)
@@ -70,8 +68,11 @@ def registro_view(request):
             messages.success(request, "Registrado Satisfactoriamente.")
             return HttpResponseRedirect('/')
         else:
-            messages.error(request, "Registro invalido. Algunos datos ingresados no son correctos")
+            messages.error(request, "Registro invalido. Algunos datos ingresados no son correctos.")
     else:
         form = RegistroUsuarioForm()
     
     return render(request=request, template_name="registro.html", context={"register_form": form})
+
+def error_403_view(request, exception):
+    return render(request, '403.html', status=403)
