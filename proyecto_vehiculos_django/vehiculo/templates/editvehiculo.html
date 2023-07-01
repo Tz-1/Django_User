@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="add">
-    <h3 class="pt-2">Ingresar Vehiculo</h3>
-    <form action="" method="POST" enctype='multipart/form-data'>
+<div class="edit add">
+    <h3 class="pt-2">Editar Vehiculo</h3>
+    <form action="" method="POST">
         {% csrf_token %}
         <div class="form-group m-2">
             <label>Marca:</label>
@@ -39,7 +39,8 @@
             <br>
             {{ form.imagen }}
         </div>-->
-        <input type="submit" class="btn btn-primary m-3" value="Enviar">
+        <input type="submit" class="btn btn-primary m-3" value="Guardar cambios">
+        <a href="{% url 'listvehiculo' %}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 {% endblock %}

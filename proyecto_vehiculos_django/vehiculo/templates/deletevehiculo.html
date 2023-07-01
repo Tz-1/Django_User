@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="delete text-center m-2">
+    <h3 class="pt-2">Eliminar Vehiculo</h3>
+    <p>¿Estás seguro de que deseas eliminar el vehiculo "{{ vehiculo.marca }}, {{ vehiculo.modelo }}"?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Eliminar">
+        <a href="{% url 'listvehiculo' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

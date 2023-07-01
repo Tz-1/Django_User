@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -21,15 +21,31 @@ def listvehiculo(request):
     return render(request, 'listvehiculo.html', {'listvehiculo': vehiculos})
 
 def addvehiculo(request):
-    context ={}
     form = VehiculoForm(request.POST or None, request.FILES or None)
-
     if form.is_valid():
         form.save()
         form = VehiculoForm()
+        messages.success(request, 'El formulario se ha enviado correctamente!')
 
-    context['form']= form
-    return render(request, "addvehiculo.html", context)
+    return render(request, "addvehiculo.html", {'form': form})
+
+def editvehiculo(request, vehiculo_id):
+    vehiculo = get_object_or_404(VehiculoModel, id=vehiculo_id)
+    if request.method == 'POST':
+        form = VehiculoForm(request.POST, instance=vehiculo)
+        if form.is_valid():
+            form.save()
+            return redirect('listvehiculo')
+    else:
+        form = VehiculoForm(instance=vehiculo)
+    return render(request, 'editvehiculo.html', {'form': form, 'vehiculo': vehiculo})
+
+def deletevehiculo(request, vehiculo_id):
+    vehiculo = get_object_or_404(VehiculoModel, id=vehiculo_id)
+    if request.method == 'POST':
+        vehiculo.delete()
+        return redirect('listvehiculo')
+    return render(request, 'deletevehiculo.html', {'vehiculo': vehiculo})
 
 def login_view(request):
     if request.method == "POST":

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import indexview, addvehiculo, login_view, logout_view, listvehiculo, registro_view
+from .views import indexview, addvehiculo, login_view, logout_view, listvehiculo, registro_view, editvehiculo, deletevehiculo
 
 handler403 = 'vehiculo.views.error_403_view'
 
@@ -11,5 +11,7 @@ urlpatterns = [
     path('registro/', registro_view, name='registro'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    path('list/', listvehiculo, name = 'listvehiculo')
+    path('list/', listvehiculo, name = 'listvehiculo'),
+    path('edit/<int:vehiculo_id>/', editvehiculo, name='editvehiculo'),
+    path('delete/<int:vehiculo_id>/', deletevehiculo, name='deletevehiculo'),
 ]

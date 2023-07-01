@@ -22,6 +22,7 @@ class VehiculoModel(models.Model):
     precio = models.FloatField()
     fecha_creacion = models.DateTimeField(auto_now_add = True)
     fecha_modificacion = models.DateTimeField(auto_now = True)
+    #imagen = models.ImageField(upload_to='vehiculos')
 
     class Meta:
         permissions = (
