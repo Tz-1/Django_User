@@ -32,9 +32,10 @@ def addvehiculo(request):
 def editvehiculo(request, vehiculo_id):
     vehiculo = get_object_or_404(VehiculoModel, id=vehiculo_id)
     if request.method == 'POST':
-        form = VehiculoForm(request.POST, instance=vehiculo)
+        form = VehiculoForm(request.POST, request.FILES or None, instance=vehiculo)
         if form.is_valid():
             form.save()
+            messages.success(request, 'El formulario se ha editado correctamente!')
             return redirect('listvehiculo')
     else:
         form = VehiculoForm(instance=vehiculo)

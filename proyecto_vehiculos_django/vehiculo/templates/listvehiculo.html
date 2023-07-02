@@ -13,6 +13,8 @@
             <th scope="col">Categoria</th>
             <th scope="col">Precio</th>
             <th scope="col">Condicion de precio</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
 
@@ -32,7 +34,15 @@
             {% else %}
             <td>Alto</td>
             {% endif %}
-           <!--<td>{{ i.imagen }}</td>--> 
+            {% if i.imagen %}
+            <td>
+                <a href="{{ i.imagen.url }}" target="_blank">
+                    <img id="zoomi" src="{{ i.imagen.url }}" alt="Imagen de vehículo" width="160" height="100">
+                </a>
+            </td>
+            {% else %}
+            <td></td>
+            {% endif %}
             <td>
                 <a href="{% url 'editvehiculo' i.id %}" class="btn btn-primary">Editar</a>
                 <a href="{% url 'deletevehiculo' i.id %}" class="btn btn-danger">Eliminar</a>

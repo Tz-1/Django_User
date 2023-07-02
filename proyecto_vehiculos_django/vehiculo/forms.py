@@ -14,6 +14,9 @@ class VehiculoForm(forms.ModelForm):
         
         for field_name, field in self.fields.items():
             field.required = True
+            
+        self.fields['imagen'].required = False
+
 
 class RegistroUsuarioForm(UserCreationForm):
     email = forms.EmailField(required=True)
