@@ -8,6 +8,7 @@
     {% bootstrap_javascript %}
     {% bootstrap_messages %}
     {% load static %}
+    <link rel="shortcut icon" type="icon" href="{% static 'assets/img/car.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Vehiculos</title>
 </head>
@@ -16,6 +17,7 @@
 
     {% block content %}
     {% endblock content %}
-    
+
+    {% include 'footer.html' %}
 </body>
 </html>
