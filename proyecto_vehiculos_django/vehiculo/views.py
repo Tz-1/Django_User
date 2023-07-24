@@ -6,8 +6,11 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.views import View
 
-from .forms import VehiculoForm, RegistroUsuarioForm
+
+from .forms import VehiculoForm, RegistroUsuarioForm, ProfileEditForm
 from .models import VehiculoModel
 
 def indexview(request):
@@ -93,3 +96,31 @@ def registro_view(request):
 
 def error_403_view(request, exception):
     return render(request, '403.html', status=403)
+
+@login_required(login_url='login')
+def myprofile(request):
+    user = request.user
+    context = {
+        'user': user,
+    }
+    return render(request, 'profile.html', context)
+        
+@login_required(login_url='login')
+def editprofile(request):
+    profile_form = ProfileEditForm(instance=request.user.profile)
+
+    if request.method == 'POST':
+        profile_form = ProfileEditForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Tu perfil se ha actualizado con exito!')
+            return redirect('profile')  
+        else:
+            messages.error(request, 'Hubo un error al actualizar tu perfil')
+
+    context = {
+        'profile_form': profile_form
+    }
+
+    return render(request, 'editprofile.html', context)

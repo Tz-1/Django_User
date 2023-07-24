@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from .models import Profile
 from .models import VehiculoModel
 
 class VehiculoAdmin(admin.ModelAdmin):
@@ -7,3 +8,4 @@ class VehiculoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(VehiculoModel, VehiculoAdmin)
+admin.site.register(Profile)

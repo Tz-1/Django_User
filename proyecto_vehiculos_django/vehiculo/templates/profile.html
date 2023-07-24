@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<div class="d-flex justify-content-center p-5 mb-5">
+	<div class="card gradient-custom" style="width: 25rem;">
+		{% if user.profile %}
+		<img src="{{user.profile.avatar.url}}" alt="{{ user.username }}" class="card-img-top" accept=".jpg,.jpeg,.png">
+		{% endif %}
+		<div class="card-body">
+			<h5 class="card-title">@{{ user.username | title }}</h5>
+			<p class="text-center"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
+			<p class="card-text">{{ user.profile.biography }}</p>
+			<a class="btn btn-primary btn-pro" href="{% url 'editprofile' %}">Editar</a>
+		</div>
+	</div>
+</div>
+  
+  
+{% endblock content %}

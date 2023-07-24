@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
 
-from .models import VehiculoModel
+from .models import VehiculoModel, Profile
 
 class VehiculoForm(forms.ModelForm):
     class Meta:
@@ -31,3 +33,8 @@ class RegistroUsuarioForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'biography']

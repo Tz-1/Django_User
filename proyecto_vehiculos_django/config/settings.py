@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 ]
 
+AUTH_USER_MODEL = 'auth.User'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
