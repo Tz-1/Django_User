@@ -22,7 +22,7 @@ A Django-based web application for managing and selling cars. This platform allo
 
 Follow these steps to set up the project locally:
 
-1. **Clone the repository**:
+1. Clone the repository:
 2. Install requirements. (They can be found on requirements.txt inside the project.)
 3. Apply migrations.
 
